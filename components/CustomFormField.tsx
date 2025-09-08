@@ -16,6 +16,8 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 import { Select, SelectContent, SelectTrigger, SelectValue } from "./ui/select";
+import { ca } from "zod/v4/locales";
+import { Textarea } from "./ui/textarea";
 
 interface CustomProps {
   control: Control<any>;
@@ -41,6 +43,8 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
     dateFormat,
     showTimeSelect,
     renderSkeleton,
+    children,
+    disabled,
   } = props;
 
   switch (props.fieldType) {
@@ -111,13 +115,25 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
           <Select onValueChange={field.onChange} defaultValue={field.value}>
             <FormControl>
               <SelectTrigger className="shad-select-trigger">
-                <SelectValue placeholder={props.placeholder} />
+                <SelectValue placeholder={placeholder} />
               </SelectTrigger>
             </FormControl>
             <SelectContent className="shad-select-content">
-              {props.children}
+              {children}
             </SelectContent>
           </Select>
+        </FormControl>
+      );
+    // TEXTAREA
+    case FormFieldType.TEXTAREA:
+      return (
+        <FormControl>
+          <Textarea
+            placeholder={placeholder}
+            {...field}
+            className="shad-textArea"
+            disabled={disabled}
+          />
         </FormControl>
       );
     // Skeleton

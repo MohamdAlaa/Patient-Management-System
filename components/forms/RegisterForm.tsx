@@ -211,6 +211,24 @@ const RegisterForm = ({ user }: { user: User }) => {
               placeholder="ABC123456789"
             />
           </div>
+          {/* ALLERGY & CURRENT MEDICATIONS */}
+          <div className="flex flex-col gap-6 xl:flex-row">
+            <CustomFormField
+              fieldType={FormFieldType.TEXTAREA}
+              control={form.control}
+              name="allergies"
+              label="Allergies (if any)"
+              placeholder="Peanuts, Penicillin, Pollen"
+            />
+
+            <CustomFormField
+              fieldType={FormFieldType.TEXTAREA}
+              control={form.control}
+              name="currentMedication"
+              label="Current medications"
+              placeholder="Ibuprofen 200mg, Levothyroxine 50mcg"
+            />
+          </div>
         </section>
 
         <SubmitButton isLoading={isLoading}>Submit and Continue</SubmitButton>
