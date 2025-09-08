@@ -61,7 +61,6 @@ const RegisterForm = ({ user }: { user: User }) => {
           </div>
 
           {/* NAME */}
-
           <CustomFormField
             fieldType={FormFieldType.INPUT}
             control={form.control}
@@ -124,6 +123,24 @@ const RegisterForm = ({ user }: { user: User }) => {
                   </RadioGroup>
                 </FormControl>
               )}
+            />
+          </div>
+          {/* Address & Occupation */}
+          <div className="flex flex-col gap-6 xl:flex-row">
+            <CustomFormField
+              fieldType={FormFieldType.INPUT}
+              control={form.control}
+              name="address"
+              label="Address"
+              placeholder="Egypt, Cairo"
+            />
+
+            <CustomFormField
+              fieldType={FormFieldType.INPUT}
+              control={form.control}
+              name="occupation"
+              label="Occupation"
+              placeholder=" Software Engineer"
             />
           </div>
         </section>
