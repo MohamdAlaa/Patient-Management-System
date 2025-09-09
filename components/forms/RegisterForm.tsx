@@ -229,6 +229,24 @@ const RegisterForm = ({ user }: { user: User }) => {
               placeholder="Ibuprofen 200mg, Levothyroxine 50mcg"
             />
           </div>
+          {/* FAMILY MEDICATION & PAST MEDICATIONS */}
+          <div className="flex flex-col gap-6 xl:flex-row">
+            <CustomFormField
+              fieldType={FormFieldType.TEXTAREA}
+              control={form.control}
+              name="familyMedicalHistory"
+              label=" Family medical history (if relevant)"
+              placeholder="Mother had brain cancer, Father has hypertension"
+            />
+
+            <CustomFormField
+              fieldType={FormFieldType.TEXTAREA}
+              control={form.control}
+              name="pastMedicalHistory"
+              label="Past medical history"
+              placeholder="Appendectomy in 2015, Asthma diagnosis in childhood"
+            />
+          </div>
         </section>
 
         <SubmitButton isLoading={isLoading}>Submit and Continue</SubmitButton>
