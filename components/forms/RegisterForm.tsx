@@ -13,7 +13,7 @@ import CustomFormField from "../CustomFormField";
 import { FormFieldType } from "./PatientForm";
 import { SubmitButton } from "../SubmitButton";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
-import { Doctors, GenderOptions } from "@/constants";
+import { Doctors, GenderOptions, IdentificationTypes } from "@/constants";
 import { Label } from "../ui/label";
 import Image from "next/image";
 import { SelectItem } from "../ui/select";
@@ -57,6 +57,7 @@ const RegisterForm = ({ user }: { user: User }) => {
           <p className="text-dark-700">Let us know more about yourself.</p>
         </section>
 
+        {/* Personal Information section */}
         <section className="space-y-6">
           <div className="mb-9 space-y-1">
             <h2 className="sub-header">Personal Information</h2>
@@ -165,6 +166,7 @@ const RegisterForm = ({ user }: { user: User }) => {
           </div>
         </section>
 
+        {/* Medical Information section */}
         <section className="space-y-6">
           <div className="mb-9 space-y-1">
             <h2 className="sub-header">Medical Information</h2>
@@ -179,8 +181,12 @@ const RegisterForm = ({ user }: { user: User }) => {
             placeholder="Select a physician"
           >
             {Doctors.map((doctor, i) => (
-              <SelectItem key={doctor.name + i} value={doctor.name}>
-                <div className="flex cursor-pointer items-center gap-2">
+              <SelectItem
+                className=" hover:bg-slate-800"
+                key={doctor.name + i}
+                value={doctor.name}
+              >
+                <div className="flex cursor-pointer items-center gap-2 ">
                   <Image
                     src={doctor.image}
                     width={32}
@@ -247,6 +253,30 @@ const RegisterForm = ({ user }: { user: User }) => {
               placeholder="Appendectomy in 2015, Asthma diagnosis in childhood"
             />
           </div>
+        </section>
+
+        {/* Identification and Verfication section */}
+        <section className="space-y-6">
+          <div className="mb-9 space-y-1">
+            <h2 className="sub-header">Identification and Verfication</h2>
+          </div>
+          <CustomFormField
+            fieldType={FormFieldType.SELECT}
+            control={form.control}
+            name="identificationType"
+            label="Identification Type"
+            placeholder="Select identification type"
+          >
+            {IdentificationTypes.map((type, i) => (
+              <SelectItem
+                className=" cursor-pointer hover:bg-slate-800"
+                key={type + i}
+                value={type}
+              >
+                {type}
+              </SelectItem>
+            ))}
+          </CustomFormField>
         </section>
 
         <SubmitButton isLoading={isLoading}>Submit and Continue</SubmitButton>
