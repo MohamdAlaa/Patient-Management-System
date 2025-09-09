@@ -17,6 +17,7 @@ import { Doctors, GenderOptions, IdentificationTypes } from "@/constants";
 import { Label } from "../ui/label";
 import Image from "next/image";
 import { SelectItem } from "../ui/select";
+import { FileUploader } from "../FileUploader";
 
 const RegisterForm = ({ user }: { user: User }) => {
   const router = useRouter();
@@ -260,6 +261,8 @@ const RegisterForm = ({ user }: { user: User }) => {
           <div className="mb-9 space-y-1">
             <h2 className="sub-header">Identification and Verfication</h2>
           </div>
+
+          {/* Identification Type */}
           <CustomFormField
             fieldType={FormFieldType.SELECT}
             control={form.control}
@@ -277,6 +280,28 @@ const RegisterForm = ({ user }: { user: User }) => {
               </SelectItem>
             ))}
           </CustomFormField>
+
+          {/* Identification Number */}
+          <CustomFormField
+            fieldType={FormFieldType.INPUT}
+            control={form.control}
+            name="identificationNumber"
+            label="Identification Number"
+            placeholder="123456789"
+          />
+
+          {/* Upload Identification Document */}
+          <CustomFormField
+            fieldType={FormFieldType.SKELETON}
+            control={form.control}
+            name="identificationDocument"
+            label="Scanned Copy of Identification Document"
+            renderSkeleton={(field) => (
+              <FormControl>
+                <FileUploader files={field.value} onChange={field.onChange} />
+              </FormControl>
+            )}
+          />
         </section>
 
         <SubmitButton isLoading={isLoading}>Submit and Continue</SubmitButton>
