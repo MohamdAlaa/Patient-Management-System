@@ -67,7 +67,7 @@ const RegisterForm = ({ user }: { user: User }) => {
           : undefined,
         privacyConsent: values.privacyConsent,
       };
-
+      // @ts-ignore
       const newPatient = await registerPatient(patient);
 
       if (newPatient) {
