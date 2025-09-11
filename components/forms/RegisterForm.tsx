@@ -6,8 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import z from "zod";
+import { useForm, type SubmitHandler, type Resolver } from "react-hook-form";
+import { z } from "zod";
 import { Form, FormControl } from "../ui/form";
 import CustomFormField from "../CustomFormField";
 import { FormFieldType } from "./PatientForm";
@@ -29,8 +29,12 @@ const RegisterForm = ({ user }: { user: User }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
-  const form = useForm<z.infer<typeof PatientFormValidation>>({
-    resolver: zodResolver(PatientFormValidation),
+  type FormValues = z.infer<typeof PatientFormValidation>;
+
+  const form = useForm<FormValues>({
+    resolver: zodResolver(
+      PatientFormValidation
+    ) as unknown as Resolver<FormValues>,
     defaultValues: {
       ...PatientFormDefaultValues,
       name: "",
@@ -39,7 +43,7 @@ const RegisterForm = ({ user }: { user: User }) => {
     },
   });
   // 2. Define a submit handler.
-  const onSubmit = async (values: z.infer<typeof PatientFormValidation>) => {
+  const onSubmit: SubmitHandler<FormValues> = async (values) => {
     setIsLoading(true);
 
     // Store file info in form data as
@@ -67,12 +71,13 @@ const RegisterForm = ({ user }: { user: User }) => {
           : undefined,
         privacyConsent: values.privacyConsent,
       };
-      // @ts-ignore
+
       const newPatient = await registerPatient(patient);
 
       if (newPatient) {
         router.push(`/patients/${user.$id}/new-appointment`);
       }
+      console.log(newPatient);
     } catch (error) {
       console.log(error);
     }
@@ -285,10 +290,10 @@ const RegisterForm = ({ user }: { user: User }) => {
           </div>
         </section>
 
-        {/* Identification and Verfication section */}
+        {/* Identification and Verification section */}
         <section className="space-y-6">
           <div className="mb-9 space-y-1">
-            <h2 className="sub-header">Identification and Verfication</h2>
+            <h2 className="sub-header">Identification and Verification</h2>
           </div>
           {/* Identification Type */}
           <CustomFormField
