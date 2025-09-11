@@ -1,6 +1,16 @@
 import Image from "next/image";
 
-const Appointment = async () => {
+import { AppointmentForm } from "@/components/forms/AppointmentForm";
+import { getPatient } from "@/lib/actions/patient.actions";
+
+const Appointment = async ({
+  params,
+}: {
+  params: Promise<{ userId: string }>;
+}) => {
+  const { userId } = await params;
+  const patient = await getPatient(userId);
+
   return (
     <div className="flex h-screen max-h-screen">
       <section className="remove-scrollbar container my-auto">
@@ -11,6 +21,12 @@ const Appointment = async () => {
             width={1000}
             alt="logo"
             className="mb-12 h-10 w-fit"
+          />
+
+          <AppointmentForm
+            patientId={patient?.$id}
+            userId={userId}
+            type="create"
           />
 
           <p className="copyright mt-10 py-12">© 2025 CarePluse</p>
