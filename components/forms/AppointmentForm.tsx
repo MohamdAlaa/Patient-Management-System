@@ -97,6 +97,7 @@ export const AppointmentForm = ({
             `/patients/${userId}/new-appointment/success?appointmentId=${newAppointment.$id}`
           );
         }
+        console.log(newAppointment);
       }
     } catch (error) {
       console.log(error);
