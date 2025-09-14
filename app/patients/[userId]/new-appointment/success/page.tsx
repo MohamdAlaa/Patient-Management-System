@@ -7,11 +7,10 @@ import { getAppointment } from "@/lib/actions/appointment.actions";
 import { formatDateTime } from "@/lib/utils";
 import { log } from "console";
 
-const RequestSuccess = async ({
-  searchParams,
-  params: { userId },
-}: SearchParamProps) => {
-  const appointmentId = (searchParams?.appointmentId as string) || "";
+const RequestSuccess = async ({ searchParams, params }: SearchParamProps) => {
+  const resolvedSearchParams = await searchParams;
+  const resolvedParams = await params;
+  const appointmentId = (resolvedSearchParams?.appointmentId as string) || "";
   const appointment = await getAppointment(appointmentId);
 
   const doctor = Doctors.find(
@@ -69,7 +68,7 @@ const RequestSuccess = async ({
         </section>
 
         <Button variant="outline" className="shad-primary-btn" asChild>
-          <Link href={`/patients/${userId}/new-appointment`}>
+          <Link href={`/patients/${resolvedParams.userId}/new-appointment`}>
             New Appointment
           </Link>
         </Button>

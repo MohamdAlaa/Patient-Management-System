@@ -50,6 +50,7 @@ export const PatientForm = () => {
       if (newUser) {
         router.push(`/patients/${newUser.$id}/register`);
       }
+      console.log(newUser);
     } catch (error) {
       console.log(error);
     }
