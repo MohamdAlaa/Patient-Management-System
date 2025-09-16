@@ -11,6 +11,29 @@ export const {
   NEXT_PUBLIC_BUCKET_ID: BUCKET_ID,
 } = process.env;
 
+// Validate required environment variables
+const requiredEnvVars = {
+  ENDPOINT,
+  PROJECT_ID,
+  API_KEY,
+  DATABASE_ID,
+  PATIENT_COLLECTION_ID,
+  DOCTOR_COLLECTION_ID,
+  APPOINTMENT_COLLECTION_ID,
+  BUCKET_ID,
+};
+
+const missingVars = Object.entries(requiredEnvVars)
+  .filter(([_, value]) => !value)
+  .map(([key]) => key);
+
+if (missingVars.length > 0) {
+  console.error("Missing required environment variables:", missingVars);
+  throw new Error(
+    `Missing required environment variables: ${missingVars.join(", ")}`
+  );
+}
+
 const client = new sdk.Client();
 
 client.setEndpoint(ENDPOINT!).setProject(PROJECT_ID!).setKey(API_KEY!);

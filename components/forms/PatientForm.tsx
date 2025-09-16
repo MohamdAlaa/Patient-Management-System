@@ -47,15 +47,33 @@ export const PatientForm = () => {
 
       const newUser = await createUser(user);
 
-      if (newUser) {
-        router.push(`/patients/${newUser.$id}/register`);
-      }
-      console.log(newUser);
-    } catch (error) {
-      console.log(error);
-    }
+      console.log("Received user from createUser:", newUser);
+      console.log("User ID ($id):", newUser?.$id);
 
-    setIsLoading(false);
+      const userId = newUser?.$id;
+
+      if (newUser && userId) {
+        router.push(`/patients/${userId}/register`);
+      } else {
+        console.error("Failed to create user: No user ID returned", {
+          newUser,
+          hasId: !!userId,
+          userKeys: newUser
+            ? Object.keys(newUser)
+            : "newUser is null/undefined",
+        });
+        // You might want to show a toast notification here
+        alert("Failed to create user. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error creating user:", error);
+      // You might want to show a toast notification here
+      alert(
+        "An error occurred while creating your account. Please check your connection and try again."
+      );
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
