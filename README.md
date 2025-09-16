@@ -47,6 +47,7 @@ A modern, full-stack patient management system built with Next.js 15, featuring 
 - **React Hook Form** - Form management
 - **Zod** - Schema validation
 - **TanStack Table** - Data table functionality
+- **Twilio** - SMS and phone verification
 
 ### Backend & Database
 
@@ -216,13 +217,6 @@ Patient -management-system/
     └── assets/                   # Images, icons, etc.
 ```
 
-## 🔧 Available Scripts
-
-- `npm run dev` - Start development server with Turbopack
-- `npm run build` - Build the application for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint for code quality
-
 ## 🚀 Deployment
 
 ### Vercel (Recommended)
@@ -258,30 +252,11 @@ This project includes Sentry integration for:
 - User session tracking
 - Real-time error notifications
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is private and proprietary. All rights reserved.
-
 ## 🆘 Support
 
 For support and questions:
 
 - Create an issue in the repository
-- Contact the development team
 - Check the documentation
-
-## 🔄 Version History
-
-- **v0.1.0** - Initial release with basic patient management and appointment scheduling
-
----
 
 **Built with ❤️ using Next.js and modern web technologies**
