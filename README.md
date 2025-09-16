@@ -77,7 +77,7 @@ A modern, full-stack patient management system built with Next.js 15, featuring 
 
    ```bash
    git clone <repository-url>
-   cd paient-mangment-system
+   cd Patient -management-system
    ```
 
 2. **Install dependencies**
@@ -197,7 +197,7 @@ A modern, full-stack patient management system built with Next.js 15, featuring 
 ## 🏗️ Project Structure
 
 ```
-paient-mangment-system/
+Patient -management-system/
 ├── app/                          # Next.js App Router
 │   ├── admin/                    # Admin dashboard
 │   ├── api/                      # API routes
@@ -205,7 +205,7 @@ paient-mangment-system/
 │   └── sentry-example-page/      # Sentry testing page
 ├── components/                   # Reusable components
 │   ├── forms/                    # Form components
-│   ├── tabel/                    # Data table components
+│   ├── table/                    # Data table components
 │   └── ui/                       # UI components
 ├── lib/                          # Utility functions
 │   ├── actions/                  # Server actions
