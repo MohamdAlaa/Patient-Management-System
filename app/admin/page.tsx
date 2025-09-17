@@ -6,6 +6,10 @@ import { getRecentAppointmentList } from "@/lib/actions/appointment.actions";
 import { DataTable } from "@/components/tabel/DataTable";
 import { columns } from "@/components/tabel/columns";
 
+// Force dynamic rendering to prevent caching
+export const dynamic = "force-dynamic";
+export const revalidate = 0; // Disable caching completely
+
 const AdminPage = async () => {
   const appointments = await getRecentAppointmentList();
 
