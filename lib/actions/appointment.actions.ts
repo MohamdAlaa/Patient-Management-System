@@ -57,16 +57,6 @@ export const getRecentAppointmentList = async () => {
       APPOINTMENT_COLLECTION_ID!,
       [Query.orderDesc("$createdAt")]
     );
-
-    // Debug logging
-    console.log("Appointments fetched:", {
-      total: appointments.total,
-      count: appointments.documents.length,
-      databaseId: DATABASE_ID,
-      collectionId: APPOINTMENT_COLLECTION_ID,
-      timestamp: new Date().toISOString(),
-      environment: process.env.NODE_ENV,
-    });
     // For each appointment, fetch the related patient data
     const appointmentsWithPatients = await Promise.all(
       appointments.documents.map(async (appointment) => {
